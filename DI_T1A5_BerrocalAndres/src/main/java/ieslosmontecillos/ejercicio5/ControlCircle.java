@@ -15,35 +15,42 @@ import javafx.stage.Stage;
 
 public class ControlCircle extends Application {
 
-    private Circle circle = new Circle(50); // Círculo con radio inicial de 50
+    // Círculo con radio inicial de 50
+    private Circle circle = new Circle(50);
 
     @Override
     public void start(Stage primaryStage) {
-        // Crear el StackPane y añadir el círculo
+        // Creo el StackPane y añado el círculo
         StackPane pane = new StackPane();
         pane.getChildren().add(circle);
-        circle.setFill(Color.LIGHTBLUE);
-        circle.setStroke(Color.BLACK);
+        // Círculo sin relleno, solo la circunferencia
+        circle.setFill(Color.TRANSPARENT);
+        // Color negro para la circunferencia
+        circle.setStroke(Color.BLACK); 
 
         // Botones de agrandar y reducir
-        Button btnEnlarge = new Button("Agrandar");
-        Button btnShrink = new Button("Reducir");
+        Button btnEnlarge = new Button("Enlarge");
+        Button btnShrink = new Button("Shrink");
 
-        // Crear un HBox para contener los botones
-        HBox hBox = new HBox(10); // Espaciado de 10px entre botones
-        hBox.setAlignment(Pos.CENTER); // Centrar los botones
+        // Creo un HBox para contener los botones
+        // Espaciado de 10px entre los botones
+        HBox hBox = new HBox(10); 
+        // Centro los botones
+        hBox.setAlignment(Pos.CENTER); 
         hBox.getChildren().addAll(btnEnlarge, btnShrink);
 
-        // Crear un VBox para colocar el círculo arriba y los botones debajo
-        VBox vBox = new VBox(20); // Espaciado de 20px entre el círculo y los botones
-        vBox.setAlignment(Pos.CENTER); // Alinear ambos elementos al centro
+        // Creo un VBox para colocar el círculo arriba y los botones debajo
+        // Espaciado de 20px entre el círculo y los botones
+        VBox vBox = new VBox(20); 
+        // Alineo ambos elementos al centro
+        vBox.setAlignment(Pos.CENTER); 
         vBox.getChildren().addAll(pane, hBox);
 
-        // Añadir manejadores de eventos utilizando clases anidadas
+        // Añado manejadores de eventos utilizando clases anidadas
         btnEnlarge.setOnAction(new EnlargeHandler());
         btnShrink.setOnAction(new ShrinkHandler());
 
-        // Crear la escena y mostrarla
+        // Creo la escena y la muestro
         Scene scene = new Scene(vBox, 300, 250);
         primaryStage.setTitle("Control Circle");
         primaryStage.setScene(scene);
